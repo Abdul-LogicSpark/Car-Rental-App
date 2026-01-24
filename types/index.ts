@@ -8,5 +8,10 @@ export interface CustomButtonProps {
 }
 
 export interface CustomFilterProps {
-    title : string
+    title : string;
+}
+
+export interface SearchManufacturerProps {
+    manufacturer : string;
+    setManufacturer : (manufacturer : string) => void
 }

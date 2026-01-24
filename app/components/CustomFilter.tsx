@@ -1,12 +1,8 @@
-import { CustomFilterProps } from '@/types'
-import React from 'react'
+import { CustomFilterProps } from "@/types";
+import React from "react";
 
-const CustomFilter = ({title} : CustomFilterProps) => {
-  return (
-    <div>
-      CustomFilter
-    </div>
-  )
-}
+const CustomFilter = () => {
+  return <div>CustomFilter</div>;
+};
 
-export default CustomFilter
+export default CustomFilter;
