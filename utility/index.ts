@@ -1,3 +1,4 @@
+import { CarProps } from "@/types";
 
 export const fetchCars = async () => {
     const header = {
@@ -30,4 +31,42 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
   const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
 
   return rentalRatePerDay.toFixed(0);
+};
+
+// export const generateCarImageUrl = (car: CarProps, angle?: string) => {
+//   const url = new URL("https://cdn.imagin.studio/getimage");
+//   const { make, model, year } = car;
+
+//   url.searchParams.append('customer', process.env.NEXT_PUBLIC_IMAGIN_API_KEY || '');
+//   url.searchParams.append('make', make);
+//   url.searchParams.append('modelFamily', model.split(" ")[0]);
+//   url.searchParams.append('zoomType', 'fullscreen');
+//   url.searchParams.append('modelYear', `${year}`);
+//   // url.searchParams.append('zoomLevel', zoomLevel);
+//   url.searchParams.append('angle', `${angle}`);
+
+//   return `${url}`;
+// } 
+
+export const generateCarImageUrl = (car: CarProps, angle?: string) => {
+  const url = new URL("https://cdn.imagin.studio/getimage");
+  const { make, model, year } = car;
+
+  url.searchParams.append(
+    "customer",
+    process.env.NEXT_PUBLIC_IMAGIN_API_KEY ?? ""
+  );
+  url.searchParams.append("make", make);
+  url.searchParams.append("modelFamily", model.split(" ")[0]);
+  url.searchParams.append("zoomType", "fullscreen");
+  url.searchParams.append("modelYear", String(year));
+
+  // ✅ only append angle if it exists
+  if (angle) {
+    url.searchParams.append("angle", angle);
+  } else {
+    url.searchParams.append("angle", "33"); // default safe angle
+  }
+
+  return url.toString();
 };
